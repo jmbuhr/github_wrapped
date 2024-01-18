@@ -7,12 +7,22 @@ theme: darkly
 execute: 
   echo: false
 params:
-    userid: "schochastics"
+    userid: "jmbuhr"
     highlight: "#DBAC34"
     anti_color: "#DB5934"
     bg_color: "#2D2D2D"
     ignore_lang: "CSS,JavaScript,SCSS,HTML,TeX"
 ---
+
+
+```{r}
+#| eval: false
+install.packages("ghql")
+install.packages("jsonlite")
+install.packages("tidyverse")
+install.packages("patchwork")
+install.packages("reactable")
+```
 
 ```{r}
 #| label: load_packages
@@ -28,7 +38,7 @@ ignore_lang <- str_split(params$ignore_lang, ",")[[1]]
 ```{r}
 #| label: setup_data
 #| cache: true
-token <- Sys.getenv("GITHUB_TOKEN")
+token <- Sys.getenv("GITHUB_PAT")
 con <- GraphqlClient$new(
     url = "https://api.github.com/graphql",
     headers = list(Authorization = paste0("Bearer ", token))
